@@ -26,11 +26,6 @@ namespace BullsAndCows
             int countWrongPosition = secret.Where(secretChar => guess.Contains(secretChar)).ToList().Count;
             int countRightNumber = guess.Where((singleNumber, index) => singleNumber == secret[index]).ToList().Count;
             countWrongPosition -= countRightNumber;
-            //int countWrongPosition = 0;
-            //if (secret == guess)
-            //{
-            //    countRightNumber = 4;
-            //}
             return $"{countRightNumber}A{countWrongPosition}B";
         }
     }
