@@ -23,17 +23,15 @@ namespace BullsAndCows
 
         private string Compare(string secret, string guess)
         {
-            if (secret == guess)
-            {
-                return "4A0B";
-            }
-
-            if (secret.Where(secretChar => guess.Contains(secretChar)).ToList().Count == 4)
-            {
-                return "0A4B";
-            }
-
-            return "0A0B";
+            int countWrongPosition = secret.Where(secretChar => guess.Contains(secretChar)).ToList().Count;
+            int countRightNumber = guess.Where((singleNumber, index) => singleNumber == secret[index]).ToList().Count;
+            countWrongPosition -= countRightNumber;
+            //int countWrongPosition = 0;
+            //if (secret == guess)
+            //{
+            //    countRightNumber = 4;
+            //}
+            return $"{countRightNumber}A{countWrongPosition}B";
         }
     }
 }

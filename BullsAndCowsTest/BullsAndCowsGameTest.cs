@@ -77,6 +77,20 @@ namespace BullsAndCowsTest
             //then
             Assert.Equal(expect, actual);
         }
+
+        [Fact]
+        public void Should_return_0A2B_given_secret_1234_guess_3456()
+        {
+            //given
+            var secretGenerator = new TestSecretGenerator();
+            var game = new BullsAndCowsGame(secretGenerator);
+            var expect = "0A2B";
+            //when
+            var actual = game.Guess("3 4 5 6");
+
+            //then
+            Assert.Equal(expect, actual);
+        }
     }
 
     public class TestSecretGenerator : SecretGenerator
