@@ -9,7 +9,7 @@ namespace BullsAndCowsTest
         [Fact]
         public void Should_create_BullsAndCowsGame()
         {
-            var secretGenerator = new TestSecretGenerator();
+            var secretGenerator = new SecretGenerator();
             var game = new BullsAndCowsGame(secretGenerator);
             Assert.NotNull(game);
             Assert.True(game.CanContinue);
@@ -47,7 +47,7 @@ namespace BullsAndCowsTest
         [InlineData("4 3 2 1")]
         [InlineData("3 4 2 1")]
 
-        public void Should_return_0A4B_given_secret_1234_guess_4321(string guess)
+        public void Should_return_0A4B_given_secret_1234_guess_4321_and_3421(string guess)
         {
             //given
             var secretGenerator = new TestSecretGenerator();
@@ -93,7 +93,7 @@ namespace BullsAndCowsTest
         }
 
         [Fact]
-        public void Should_return_0A2B_given_secret_1234_guess_1425()
+        public void Should_return_1A2B_given_secret_1234_guess_1425()
         {
             //given
             var secretGenerator = new TestSecretGenerator();
@@ -101,6 +101,20 @@ namespace BullsAndCowsTest
             var expect = "1A2B";
             //when
             var actual = game.Guess("1 4 2 5");
+
+            //then
+            Assert.Equal(expect, actual);
+        }
+
+        [Fact]
+        public void Should_return_1A3B_given_secret_1234_guess_1423()
+        {
+            //given
+            var secretGenerator = new TestSecretGenerator();
+            var game = new BullsAndCowsGame(secretGenerator);
+            var expect = "1A3B";
+            //when
+            var actual = game.Guess("1 4 2 3");
 
             //then
             Assert.Equal(expect, actual);
