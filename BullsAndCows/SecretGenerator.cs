@@ -16,6 +16,7 @@ namespace BullsAndCows
                 }
             }
 
+            Console.WriteLine(randomString);
             return randomString;
         }
 
